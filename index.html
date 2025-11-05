@@ -2,11 +2,48 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Military Power Plan Generator</title>
-    <link rel="stylesheet" href="style.css">
+    <title>S2 Power Plan Essentials</title>
+    <style>
+        #tent-area {
+            width: 600px;
+            height: 350px;
+            border: 6px solid #64837D;
+            background-color: #eef4ed;
+            border-radius: 24px 24px 36px 36px;
+            margin: 24px 0 8px 0;
+            position: relative;
+        }
+        .device-icon {
+            width: 48px; height: 48px;
+            position: absolute;
+            user-select: none;
+            cursor: grab;
+            transition: box-shadow 0.1s;
+        }
+        .device-icon.dragging {
+            opacity: 0.6;
+            z-index: 999;
+            box-shadow: 0 6px 16px #5555;
+            pointer-events: none;
+        }
+        #tent-total {
+            font-size: 1.2em;
+            font-weight: bold;
+            position: absolute;
+            bottom: 10px;
+            left: 18px;
+            background: rgba(255,255,255,0.8);
+            padding: 2px 12px;
+            border-radius: 1em;
+            border: 1px solid #9993;
+        }
+        #layout-buttons {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Military Power Plan Generator</h1>
+    <h1>S2 Power Plan Essentials</h1>
     <form id="powerPlanForm" onsubmit="return false;">
         <label for="generatorSize">Generator Size:</label>
         <select id="generatorSize">
@@ -33,6 +70,18 @@
         <button type="button" onclick="calculatePowerPlan()">Calculate</button>
     </form>
     <div id="results"></div>
+    <!-- Tent Layout UI -->
+    <hr>
+    <h2>Tent Device Layout</h2>
+    <div id="layout-buttons">
+        <button id="save-layout">Save Layout</button>
+        <button id="load-layout">Load Layout</button>
+    </div>
+    <div id="tent-area">
+        <!-- Draggable device icons and total power will be drawn here by JS -->
+        <span id="tent-total"></span>
+    </div>
     <script src="app.js"></script>
+    <script src="drag-tent.js"></script>
 </body>
 </html>
