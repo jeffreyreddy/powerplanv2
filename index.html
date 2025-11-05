@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Military Power Plan Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Military Power Plan Generator</h1>
+    <form id="powerPlanForm" onsubmit="return false;">
+        <label for="generatorSize">Generator Size:</label>
+        <select id="generatorSize">
+            <option value="10000">10 kW</option>
+            <option value="15000">15 kW</option>
+            <option value="20000">20 kW</option>
+        </select>
+        <br><br>
+        <table id="deviceTable">
+            <thead>
+                <tr>
+                    <th>Device Type</th>
+                    <th>Quantity</th>
+                    <th>Power Usage (W)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Device rows go here -->
+            </tbody>
+        </table>
+        <button type="button" onclick="addDeviceRow()">Add Device</button>
+        <br><br>
+        <button type="button" onclick="calculatePowerPlan()">Calculate</button>
+    </form>
+    <div id="results"></div>
+    <script src="app.js"></script>
+</body>
+</html>
