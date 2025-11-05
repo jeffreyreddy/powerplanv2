@@ -1,11 +1,12 @@
 // Preset device types and typical wattages for essential S2 field operations
 const deviceTypes = [
-    { name: "Laptop", power: 65 },
+    { name: "PMFWS", power: 65 },
     { name: "Tactical Radio", power: 35 },
     { name: "Secure Router/Switch", power: 40 },
     { name: "Server", power: 250 },
     { name: "LED Lantern/Field Light", power: 10 },
-    { name: "UPS/Power Strip", power: 20 }
+    { name: "UPS/Power Strip", power: 20 },
+    { name: "Maxvision Workstation", power: 350 }
 ];
 
 function addDeviceRow(typeIdx = 0, qty = 1, power = null) {
