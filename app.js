@@ -3,7 +3,7 @@ const deviceTypes = [
     { name: "PMFWS", power: 65 },
     { name: "Tactical Radio", power: 35 },
     { name: "Secure Router/Switch", power: 40 },
-    { name: "Server", power: 250 },
+    { name: "IFS", power: 250 },
     { name: "LED Lantern/Field Light", power: 10 },
     { name: "UPS/Power Strip", power: 20 },
     { name: "Maxvision Workstation", power: 350 }
