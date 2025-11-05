@@ -1,11 +1,11 @@
-// Preset device types and typical wattages
+// Preset device types and typical wattages for essential S2 field operations
 const deviceTypes = [
     { name: "Laptop", power: 65 },
-    { name: "Desktop", power: 150 },
-    { name: "Server", power: 400 },
-    { name: "Network Switch", power: 50 },
-    { name: "Router", power: 30 },
-    { name: "Monitor", power: 25 },
+    { name: "Tactical Radio", power: 35 },
+    { name: "Secure Router/Switch", power: 40 },
+    { name: "Server", power: 250 },
+    { name: "LED Lantern/Field Light", power: 10 },
+    { name: "UPS/Power Strip", power: 20 }
 ];
 
 function addDeviceRow(typeIdx = 0, qty = 1, power = null) {
@@ -18,6 +18,7 @@ function addDeviceRow(typeIdx = 0, qty = 1, power = null) {
     selectType.onchange = function() {
         const idx = selectType.selectedIndex;
         inputPower.value = deviceTypes[idx].power;
+        inputPower.setAttribute('readonly', true);
     };
     deviceTypes.forEach((dt, idx) => {
         const opt = document.createElement('option');
@@ -36,12 +37,13 @@ function addDeviceRow(typeIdx = 0, qty = 1, power = null) {
     inputQty.value = qty;
     cellQty.appendChild(inputQty);
 
-    // Power input
+    // Power input (read-only)
     const cellPower = row.insertCell();
     const inputPower = document.createElement('input');
     inputPower.type = "number";
     inputPower.min = "1";
     inputPower.value = power !== null ? power : deviceTypes[typeIdx].power;
+    inputPower.setAttribute('readonly', true);
     cellPower.appendChild(inputPower);
 
     // Remove button
@@ -77,7 +79,7 @@ function calculatePowerPlan() {
 
     // Simple runtime estimate: assume 8 hours at full load
     const fullLoadRuntimeHours = 8;
-    const estimatedRuntime = ((generatorSize / totalLoad) * fullLoadRuntimeHours).toFixed(2);
+    const estimatedRuntime = totalLoad === 0 ? 0 : ((generatorSize / totalLoad) * fullLoadRuntimeHours).toFixed(2);
 
     document.getElementById('results').innerHTML = `
         <h2>Results</h2>
