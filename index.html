@@ -4,13 +4,34 @@
     <meta charset="UTF-8">
     <title>S2 Power Plan Essentials</title>
     <style>
+        #palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-bottom: 16px;
+        }
+        .palette-device {
+            width: 54px; height: 54px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center;
+            font-size: 12px;
+            cursor: grab;
+            user-select: none;
+            border: 2px solid #228;
+            border-radius: 12px;
+            background: #eff6ff;
+            transition: box-shadow 0.12s;
+        }
+        .palette-device:active {
+            box-shadow: 0 8px 18px #69a1;
+        }
         #tent-area {
             width: 600px;
             height: 350px;
             border: 6px solid #64837D;
             background-color: #eef4ed;
             border-radius: 24px 24px 36px 36px;
-            margin: 24px 0 8px 0;
+            margin: 18px 0 8px 0;
             position: relative;
         }
         .device-icon {
@@ -19,6 +40,22 @@
             user-select: none;
             cursor: grab;
             transition: box-shadow 0.1s;
+        }
+        .device-icon .remove-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #c0392b;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+            border: 2px solid #fff;
+            z-index: 10;
         }
         .device-icon.dragging {
             opacity: 0.6;
@@ -44,33 +81,9 @@
 </head>
 <body>
     <h1>S2 Power Plan Essentials</h1>
-    <form id="powerPlanForm" onsubmit="return false;">
-        <label for="generatorSize">Generator Size:</label>
-        <select id="generatorSize">
-            <option value="10000">10 kW</option>
-            <option value="15000">15 kW</option>
-            <option value="20000">20 kW</option>
-        </select>
-        <br><br>
-        <table id="deviceTable">
-            <thead>
-                <tr>
-                    <th>Device Type</th>
-                    <th>Quantity</th>
-                    <th>Power Usage (W)</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Device rows go here -->
-            </tbody>
-        </table>
-        <button type="button" onclick="addDeviceRow()">Add Device</button>
-        <br><br>
-        <button type="button" onclick="calculatePowerPlan()">Calculate</button>
-    </form>
-    <div id="results"></div>
-    <!-- Tent Layout UI -->
+    <hr>
+    <h2>Device Palette</h2>
+    <div id="palette"></div>
     <hr>
     <h2>Tent Device Layout</h2>
     <div id="layout-buttons">
@@ -78,10 +91,8 @@
         <button id="load-layout">Load Layout</button>
     </div>
     <div id="tent-area">
-        <!-- Draggable device icons and total power will be drawn here by JS -->
         <span id="tent-total"></span>
     </div>
-    <script src="app.js"></script>
     <script src="drag-tent.js"></script>
 </body>
 </html>
